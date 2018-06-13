@@ -2,21 +2,22 @@
 
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<style>
-ul#menu li {
-    display:inline;
-}
-</style>
+<head>
+<link rel="stylesheet" href="style.css">
+</head>
 <body>
 
 <div ng-app="myApp" ng-controller="myCtrl">
-
-<ul id=""> <!-- Will change to menu after formatting -->
-  <li ng-repeat="x in weather">
-    Temperature for {{x.dt_txt + " " + x.main.temp + " " + x.weather[0].description}}
-    <img ng-src="{{ 'http://openweathermap.org/img/w/' + x.weather[0].icon + '.png'    }}" />
-  </li>
-</ul>
+<div id="forcast">
+    <table> <!-- Will change to menu after formatting -->
+      <tr>
+        <td ng-repeat="x in weather">
+            Temperature for {{x.dt_txt }} <br> {{ x.main.temp }} <br> {{ x.weather[0].description}} <br>
+            <img ng-src="{{ 'http://openweathermap.org/img/w/' + x.weather[0].icon + '.png' }}">
+        </td>
+      </tr>
+    </table>
+</div>
 <br>
 
 </div>

@@ -1,3 +1,23 @@
-.selector-for-some-widget {
-  box-sizing: content-box;
+.forcast
+{
+    border: 1px solid red;
+    width: 100px;
+    height: 50px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+table
+{
+    border: 1px solid black;
+    margin-right: 20px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+td
+{
+    width: 20px;
+    height: 20px;
+    background-color: #ccc;
 }
