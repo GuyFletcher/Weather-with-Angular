@@ -72,7 +72,7 @@ public class WeatherServiceImpl implements WeatherService{
 		List<Weather> w = new ArrayList<Weather>();
 		
 		//api call to weatherapi
-		String url = "http://api.openweathermap.org/data/2.5/forecast?APPID=ab90019a46ee4ed511f87895b9903f08&zip=05401,us&units=Imperial";
+		String url = "http://api.openweathermap.org/data/2.5/forecast?APPID=ab90019a46ee4ed511f87895b9903f08&zip=10001,us&units=Imperial";
 		
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
