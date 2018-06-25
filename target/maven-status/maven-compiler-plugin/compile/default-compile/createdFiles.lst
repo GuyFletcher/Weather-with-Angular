@@ -1,0 +1,8 @@
+com\websystique\springmvc\service\WeatherService.class
+com\websystique\springmvc\configuration\HelloWorldInitializer.class
+com\websystique\springmvc\controller\HelloWorldRestController.class
+com\websystique\springmvc\configuration\HelloWorldConfiguration.class
+com\websystique\springmvc\configuration\CORSFilter.class
+com\websystique\springmvc\service\WeatherServiceImpl.class
+com\websystique\springmvc\controller\IndexController.class
+com\websystique\springmvc\model\Weather.class
