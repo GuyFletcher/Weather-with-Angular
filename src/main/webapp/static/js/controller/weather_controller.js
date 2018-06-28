@@ -7,6 +7,7 @@ angular.module('myApp').controller('WeatherController', ['$scope', 'WeatherServi
 
     self.submit = submit;
     self.reset = reset;
+    self.addFavorite = addFavorite;
 
 
     fetchForecast();
@@ -41,6 +42,11 @@ angular.module('myApp').controller('WeatherController', ['$scope', 'WeatherServi
                 console.error('Error while updating Forecast');
             }
         );
+    }
+    
+    function addFavorite(weather) {
+    	console.log('Starting request');
+    	WeatherService.addFavorite(weather);
     }
 
     function submit() {

@@ -27,7 +27,7 @@ public class WeatherServiceImpl implements WeatherService{
 	
 	static{
 		try {
-			forecast= populateForecast();
+			forecast = populateForecast();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -89,7 +89,7 @@ public class WeatherServiceImpl implements WeatherService{
 		
 		JSONObject json = new JSONObject(response.toString());
 		
-		for(int i = 0; i < 5; i++) {
+		for(int i = 0; i < json.getJSONArray("list").length(); i++) {
 			JSONObject data = json.getJSONArray("list").getJSONObject(i);
 			w.add(new Weather(counter.incrementAndGet(), data.getJSONArray("weather").getJSONObject(0).getString("description"),  data.getJSONObject("main").getDouble("temp"), data.getString("dt_txt")));
 		}

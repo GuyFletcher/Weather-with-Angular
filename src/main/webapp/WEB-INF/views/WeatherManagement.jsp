@@ -51,7 +51,7 @@
                               <td><span ng-bind="u.temp"></span></td>
                               <td><span ng-bind="u.date"></span></td>
                               <td>
-                              <button type="button" ng-click="ctrl.favorite(u.id)" class="btn btn-success custom-width">Edit</button>
+                              <button type="button" ng-click="ctrl.addFavorite(u)" class="btn btn-success custom-width">Favorite</button>
                               </td>
                           </tr>
                       </tbody>

@@ -6,7 +6,7 @@
 	<packaging>war</packaging>
 	<version>1.0.0</version>
 	<name>Weather</name>
-
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<springframework.version>4.3.1.RELEASE</springframework.version>
@@ -38,7 +38,17 @@
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
 			<version>RELEASE</version>
+		</dependency>   
+		<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>8.0.11</version>
 		</dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.5</version>
+        </dependency>
 	</dependencies>
 
 

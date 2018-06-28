@@ -1,6 +1,7 @@
 package com.websystique.springmvc.controller;
  
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponentsBuilder;
+import java.sql.*;
 
 import com.websystique.springmvc.model.Weather;
 import com.websystique.springmvc.service.WeatherService;
@@ -53,24 +54,34 @@ public class HelloWorldRestController {
      
      
     //-------------------Create Weather--------------------------------------------------------
-     
+    
     @RequestMapping(value = "/weather/", method = RequestMethod.POST)
-    public ResponseEntity<Void> createWeather(@RequestBody Weather weather,    UriComponentsBuilder ucBuilder) {
-        System.out.println("Creating Weather " + weather.getDescription());
+    public ResponseEntity<Void> addFavorite(@RequestBody Weather weather) {
+        System.out.println("Adding to favorites: " + weather.getDate());
  
-      //change to date
-        /*if (weatherService.isWeatherExist(weather)) { 
-            System.out.println("Weather with name " + weather.getDescription() + " already exist");
-            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-        }*/
+        //add to mysql database
+        try{  
+        	Class.forName("com.mysql.cj.jdbc.Driver");  
+        	Connection con=DriverManager.getConnection(  
+        	"jdbc:mysql://localhost:3306/weather","root","");    
+
+        	String sql = "INSERT INTO weather (Description, Temp, Date) " + " VALUES (?,?,?)";
+        	
+        	PreparedStatement preparedStatement = con.prepareStatement(sql);
+        	preparedStatement.setString(1, weather.getDescription());
+        	preparedStatement.setDouble(2, weather.getTemp());
+        	preparedStatement.setTimestamp(3, java.sql.Timestamp.valueOf(weather.getDate()));
+        	preparedStatement.executeUpdate(); 
+        	
+        	con.close();  
+        	} catch(Exception e){ 
+        		System.out.println(e);
+        	}  
+        //weatherService.saveWeather(weather);
  
-        weatherService.saveWeather(weather);
- 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/weather/{id}").buildAndExpand(weather.getId()).toUri());
-        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 
- 
- 
+
+
 }

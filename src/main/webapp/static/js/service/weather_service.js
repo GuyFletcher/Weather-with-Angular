@@ -6,7 +6,8 @@ angular.module('myApp').factory('WeatherService', ['$http', '$q', function($http
 
     var factory = {
         fetchForecast: fetchForecast,
-        createWeather: createWeather
+        createWeather: createWeather,
+        addFavorite: addFavorite
     };
 
     return factory;
@@ -39,6 +40,22 @@ angular.module('myApp').factory('WeatherService', ['$http', '$q', function($http
             }
         );
         return deferred.promise;
+    }
+    function addFavorite(weather) {
+    	var deferred = $q.defer();
+    	console.log('Sending data')
+    	$http.post(REST_SERVICE_URI, weather)
+	        .then(
+	        function (response) {
+	        	console.log('Sent data')
+	            deferred.resolve(response.data);
+	        },
+	        function(errResponse){
+	            console.error('Error while adding Weather to favorites');
+	            deferred.reject(errResponse);
+	        }
+	    );
+	    return deferred.promise;
     }
 
 
